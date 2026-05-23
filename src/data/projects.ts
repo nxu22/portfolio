@@ -20,7 +20,7 @@ export const projects: Project[] = [
   {
     title: 'Pale Grain',
     description:
-      'A photography portfolio website showcasing original work. Clean, minimal design built to let the images speak for themselves.',
+      'Pale Grain is a personal photography portfolio and booking site showcasing film-inspired documentary work across the Canadian landscape, with an integrated portrait-session offering. It\'s both a gallery and a soft sales page — visitors browse the work, then find session pricing and a first-session discount that turns a casual viewer into a potential booking.\n\nI designed and built the whole site, and the part I\'m most pleased with sits behind the scenes: photos come straight off the camera in large HEIF and RAW formats that browsers can\'t display well, so I built a Python pipeline that batch-converts them into fast, web-optimized images. That keeps the gallery sharp but quick to load — important when the work itself is the entire pitch. On the front end, the photos are presented in a masonry gallery with a full-screen lightbox and keyboard navigation, framed-photo styling throughout, and scroll-triggered reveal animations that let each image arrive on its own.\n\nThe whole experience is fully responsive, from the mobile navigation down to the grid layouts, and the site is live and deployed. It\'s built with React and styled by hand with Tailwind.',
     tags: ['React', 'Vite', 'CSS', 'Netlify'],
     github: 'https://github.com/nxu22/PaleGrainCo',
     live: 'https://palegrain.netlify.app',

@@ -1,24 +1,35 @@
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 px-6 bg-white">
+    <section id="contact" className="py-24 px-6 bg-cream border-t border-blue/15">
       <div className="max-w-xl mx-auto text-center">
-        <h2 className="text-4xl font-bold text-gray-900 mb-2">Get In Touch</h2>
-        <p className="text-gray-500 mb-10">
-          I'm currently open to new opportunities. Whether you have a project in mind or just want
-          to say hi — my inbox is always open.
+
+        <p className="font-sans text-xs tracking-[0.4em] text-blue/40 uppercase mb-2">03 — Contact</p>
+        <h2 className="font-serif text-5xl text-blue italic mb-5">Say Hello</h2>
+
+        <div className="flex items-center justify-center gap-4 mb-8">
+          <span className="h-px w-14 bg-blue/25" />
+          <span className="text-orange text-sm">◆</span>
+          <span className="h-px w-14 bg-blue/25" />
+        </div>
+
+        <p className="font-sans font-light text-blue/60 text-base leading-relaxed mb-10">
+          I'm currently open to new opportunities. Whether you have a project
+          in mind or just want to connect — I'd love to hear from you.
         </p>
+
         <a
           href="mailto:nanxu1279@gmail.com"
-          className="inline-block px-10 py-4 bg-gray-900 text-white rounded-full font-semibold hover:bg-gray-700 transition-colors duration-200 mb-12"
+          className="inline-block px-10 py-3.5 bg-blue text-cream font-sans text-xs tracking-[0.25em] uppercase rounded-full hover:bg-blue/80 transition-colors duration-300 mb-12"
         >
-          Say Hello
+          Send a Message
         </a>
-        <div className="flex justify-center gap-6 text-gray-400">
+
+        <div className="flex justify-center gap-8 font-sans text-xs tracking-[0.25em] uppercase text-blue/40">
           <a
             href="https://github.com/nanxu1279"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gray-900 transition-colors duration-200 text-sm font-medium"
+            className="hover:text-orange transition-colors duration-200"
           >
             GitHub
           </a>
@@ -26,7 +37,7 @@ export default function Contact() {
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-gray-900 transition-colors duration-200 text-sm font-medium"
+            className="hover:text-orange transition-colors duration-200"
           >
             LinkedIn
           </a>

@@ -8,40 +8,94 @@ function GitHubIcon() {
   )
 }
 
+function ExternalLinkIcon() {
+  return (
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+    </svg>
+  )
+}
+
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 px-6 bg-white">
+    <section id="projects" className="py-24 px-6 bg-cream">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl font-bold text-gray-900 mb-2">Projects</h2>
-        <p className="text-gray-500 mb-12">A few things I've built</p>
-        <div className="grid sm:grid-cols-2 gap-6">
+
+        <div className="mb-14 text-center">
+          <h2 className="font-serif text-5xl text-blue italic">My Projects</h2>
+        </div>
+
+        <div className="flex flex-col gap-10">
           {projects.map((project) => (
             <div
               key={project.title}
-              className="group border border-gray-200 rounded-2xl p-6 hover:border-gray-400 hover:shadow-md transition-all duration-200"
+              className="group bg-cream border border-blue/20 rounded-xl overflow-hidden hover:border-orange/60 transition-all duration-300"
             >
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="text-lg font-semibold text-gray-900">{project.title}</h3>
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-gray-900 transition-colors duration-200 ml-3 shrink-0"
-                  aria-label="GitHub"
-                >
-                  <GitHubIcon />
+              {/* video preview */}
+              {project.video && (
+                <a href={project.live} target="_blank" rel="noopener noreferrer">
+                  <video
+                    src={project.video}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full cursor-pointer"
+                  />
                 </a>
-              </div>
-              <p className="text-gray-500 text-sm leading-relaxed mb-4">{project.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2.5 py-0.5 bg-gray-100 text-gray-600 text-xs font-medium rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
+              )}
+
+              <div className="p-6">
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="font-serif text-xl text-blue italic">
+                    {project.live ? (
+                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="hover:text-orange transition-colors duration-200">
+                        {project.title}
+                      </a>
+                    ) : project.title}
+                  </h3>
+                  <div className="flex items-center gap-3 ml-3 shrink-0 text-blue/30 group-hover:text-blue/60 transition-colors">
+                    {project.live && (
+                      <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-orange transition-colors"
+                        aria-label="Live site"
+                      >
+                        <ExternalLinkIcon />
+                      </a>
+                    )}
+                    {project.github ? (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-orange transition-colors"
+                        aria-label="GitHub"
+                      >
+                        <GitHubIcon />
+                      </a>
+                    ) : (
+                      <span className="opacity-30 cursor-default">
+                        <GitHubIcon />
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <p className="font-sans font-light text-blue/60 text-sm leading-relaxed mb-5">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-0.5 bg-blue/10 text-blue text-xs font-sans tracking-wide rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}

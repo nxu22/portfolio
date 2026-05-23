@@ -1,7 +1,7 @@
 const skillGroups = [
   {
     label: 'Frontend',
-    skills: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'HTML/CSS'],
+    skills: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'HTML / CSS'],
   },
   {
     label: 'Backend',
@@ -9,26 +9,36 @@ const skillGroups = [
   },
   {
     label: 'Tools & Other',
-    skills: ['Git', 'Docker', 'Linux', 'CI/CD', 'Figma'],
+    skills: ['Git', 'Docker', 'Linux', 'CI / CD', 'Figma'],
   },
 ]
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-6 bg-gray-50">
+    <section id="skills" className="py-24 px-6 bg-cream border-t border-blue/15">
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl font-bold text-gray-900 mb-2">Skills</h2>
-        <p className="text-gray-500 mb-12">Technologies I work with</p>
-        <div className="grid sm:grid-cols-3 gap-6">
+
+        <div className="flex items-end gap-6 mb-14">
+          <div>
+            <p className="font-sans text-xs tracking-[0.4em] text-blue/40 uppercase mb-1">02 — Skills</p>
+            <h2 className="font-serif text-5xl text-blue italic">Tech Stack</h2>
+          </div>
+          <span className="hidden sm:block h-px flex-1 bg-blue/15 mb-3" />
+        </div>
+
+        <div className="grid sm:grid-cols-3 gap-5">
           {skillGroups.map((group) => (
-            <div key={group.label} className="bg-white rounded-2xl p-6 border border-gray-200">
-              <h3 className="text-xs font-semibold tracking-widest text-indigo-500 uppercase mb-4">
+            <div
+              key={group.label}
+              className="border-l-2 border-blue/40 pl-5 py-1"
+            >
+              <h3 className="font-sans text-xs tracking-[0.35em] text-blue uppercase mb-5">
                 {group.label}
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 {group.skills.map((skill) => (
-                  <li key={skill} className="flex items-center gap-2 text-gray-700 font-medium">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
+                  <li key={skill} className="flex items-center gap-3 font-sans font-light text-sm text-blue/70">
+                    <span className="w-1 h-1 rounded-full bg-orange shrink-0" />
                     {skill}
                   </li>
                 ))}

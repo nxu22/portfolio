@@ -30,7 +30,7 @@ export const projects: Project[] = [
     title: 'Strange Light — Animal Lamp Shop',
     description:
       'Strange Light is a full-stack e-commerce application for a handmade lamp shop, built end to end as a complete, production-deployed store. It supports the full customer journey: browsing a product catalog, searching by category, managing a shopping cart, creating an account, and checking out with real credit card payments.\n\nI designed and built the entire application — frontend, database, authentication, and payment processing. The standout piece is a secure Stripe checkout: card payments are processed through a server-side function that creates the payment request before the customer\'s card details are ever collected, with completed orders saved to a PostgreSQL database. I built the interface entirely by hand rather than relying on a UI library, giving the shop a distinctive editorial design with custom animations and four switchable color themes.\n\nThe app is live and deployed, built with React, Supabase (authentication and database), Stripe (payments), and hosted on Vercel.',
-    tags: ['React', 'TypeScript', 'Supabase', 'JavaScript', 'Vercel'],
+    tags: ['React', 'TypeScript', 'Supabase', 'Stripe', 'Vercel'],
     live: 'https://strange-light-shop.vercel.app/',
     video: '/strangelight.mp4',
   },

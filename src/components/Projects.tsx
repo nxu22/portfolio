@@ -1,4 +1,5 @@
-import { projects } from '../data/projects'
+import { useState } from 'react'
+import { projects, type Project } from '../data/projects'
 
 function GitHubIcon() {
   return (
@@ -16,6 +17,97 @@ function ExternalLinkIcon() {
   )
 }
 
+function ProjectCard({ project }: { project: Project }) {
+  const [expanded, setExpanded] = useState(false)
+  const paragraphs = project.description.split('\n\n')
+  const hasMore = paragraphs.length > 1
+
+  return (
+    <div className="group bg-cream border border-blue/20 rounded-xl overflow-hidden hover:border-orange/60 transition-all duration-300">
+      {/* video preview */}
+      {project.video && (
+        <a href={project.live} target="_blank" rel="noopener noreferrer">
+          <video
+            src={project.video}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full cursor-pointer"
+          />
+        </a>
+      )}
+
+      <div className="p-6">
+        <div className="flex items-start justify-between mb-3">
+          <h3 className="font-serif text-xl text-blue italic">
+            {project.live ? (
+              <a href={project.live} target="_blank" rel="noopener noreferrer" className="hover:text-orange transition-colors duration-200">
+                {project.title}
+              </a>
+            ) : project.title}
+          </h3>
+          <div className="flex items-center gap-3 ml-3 shrink-0 text-blue/30 group-hover:text-blue/60 transition-colors">
+            {project.live && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-orange transition-colors"
+                aria-label="Live site"
+              >
+                <ExternalLinkIcon />
+              </a>
+            )}
+            {project.github ? (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-orange transition-colors"
+                aria-label="GitHub"
+              >
+                <GitHubIcon />
+              </a>
+            ) : (
+              <span className="opacity-30 cursor-default">
+                <GitHubIcon />
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="font-sans font-light text-blue/60 text-sm leading-relaxed mb-3">
+          <p>{paragraphs[0]}</p>
+          {expanded && paragraphs.slice(1).map((para, i) => (
+            <p key={i} className="mt-3">{para}</p>
+          ))}
+        </div>
+
+        {hasMore && (
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="text-xs font-sans text-orange hover:text-blue transition-colors duration-200 mb-4 tracking-wide"
+          >
+            {expanded ? 'Read less ↑' : 'Read more ↓'}
+          </button>
+        )}
+
+        <div className="flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-2.5 py-0.5 bg-blue/10 text-blue text-xs font-sans tracking-wide rounded-full"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function Projects() {
   return (
     <section id="projects" className="py-24 px-6 bg-cream">
@@ -27,77 +119,7 @@ export default function Projects() {
 
         <div className="flex flex-col gap-10">
           {projects.map((project) => (
-            <div
-              key={project.title}
-              className="group bg-cream border border-blue/20 rounded-xl overflow-hidden hover:border-orange/60 transition-all duration-300"
-            >
-              {/* video preview */}
-              {project.video && (
-                <a href={project.live} target="_blank" rel="noopener noreferrer">
-                  <video
-                    src={project.video}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full cursor-pointer"
-                  />
-                </a>
-              )}
-
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-serif text-xl text-blue italic">
-                    {project.live ? (
-                      <a href={project.live} target="_blank" rel="noopener noreferrer" className="hover:text-orange transition-colors duration-200">
-                        {project.title}
-                      </a>
-                    ) : project.title}
-                  </h3>
-                  <div className="flex items-center gap-3 ml-3 shrink-0 text-blue/30 group-hover:text-blue/60 transition-colors">
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-orange transition-colors"
-                        aria-label="Live site"
-                      >
-                        <ExternalLinkIcon />
-                      </a>
-                    )}
-                    {project.github ? (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-orange transition-colors"
-                        aria-label="GitHub"
-                      >
-                        <GitHubIcon />
-                      </a>
-                    ) : (
-                      <span className="opacity-30 cursor-default">
-                        <GitHubIcon />
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <p className="font-sans font-light text-blue/60 text-sm leading-relaxed mb-5">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-0.5 bg-blue/10 text-blue text-xs font-sans tracking-wide rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <ProjectCard key={project.title} project={project} />
           ))}
         </div>
       </div>

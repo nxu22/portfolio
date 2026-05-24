@@ -18,6 +18,15 @@ export const projects: Project[] = [
     video: '/buildright.mp4',
   },
   {
+    title: 'Build The Bridge — Cross-Border Marketing Agency',
+    description:
+      'Build The Bridge is the website for a cross-border marketing consultancy that helps Canadian natural and sustainable brands launch into the Chinese market through RED NOTE and influencer partnerships. I built and deployed the entire site end to end.\n\nIt\'s a multi-page, client-facing site built with Next.js 15 (App Router) and TypeScript, spanning the service pitch, the agency\'s approach, brand case studies, an FAQ, and dedicated landing pages for different audiences. I used Framer Motion for entrance and scroll-triggered animation, paired with custom hand-drawn SVG backgrounds and gradient lighting for a clean, polished feel, with SEO handled through Next.js\'s native metadata.\n\nLead capture is backed by real server-side logic: /api/contact is a Next.js Route Handler running on Vercel\'s Node.js serverless runtime — it parses the form payload, manages API keys securely through environment variables, and sends two emails through the Resend API (an inquiry notification to the agency and a confirmation to the sender) before returning a structured JSON response.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    github: 'https://github.com/nxu22/BuildTheBridge',
+    live: 'https://build-the-bridge-ohje.vercel.app/',
+    video: '/buildthebridge.mp4',
+  },
+  {
     title: 'Pale Grain',
     description:
       'Pale Grain is a personal photography portfolio and booking site showcasing film-inspired documentary work across the Canadian landscape, with an integrated portrait-session offering. It\'s both a gallery and a soft sales page — visitors browse the work, then find session pricing and a first-session discount that turns a casual viewer into a potential booking.\n\nI designed and built the whole site, and the part I\'m most pleased with sits behind the scenes: photos come straight off the camera in large HEIF and RAW formats that browsers can\'t display well, so I built a Python pipeline that batch-converts them into fast, web-optimized images. That keeps the gallery sharp but quick to load — important when the work itself is the entire pitch. On the front end, the photos are presented in a masonry gallery with a full-screen lightbox and keyboard navigation, framed-photo styling throughout, and scroll-triggered reveal animations that let each image arrive on its own.\n\nThe whole experience is fully responsive, from the mobile navigation down to the grid layouts, and the site is live and deployed. It\'s built with React and styled by hand with Tailwind.',
@@ -33,14 +42,5 @@ export const projects: Project[] = [
     tags: ['React', 'TypeScript', 'Supabase', 'Stripe', 'Vercel'],
     live: 'https://strange-light-shop.vercel.app/',
     video: '/strangelight.mp4',
-  },
-  {
-    title: 'Build The Bridge — Cross-Border Marketing Agency',
-    description:
-      'Build The Bridge is the website for a cross-border marketing consultancy that helps Canadian natural and sustainable brands launch into the Chinese market through RED NOTE and influencer partnerships. I built and deployed the entire site end to end.\n\nIt\'s a multi-page, client-facing site built with Next.js 15 (App Router) and TypeScript, spanning the service pitch, the agency\'s approach, brand case studies, an FAQ, and dedicated landing pages for different audiences. I used Framer Motion for entrance and scroll-triggered animation, paired with custom hand-drawn SVG backgrounds and gradient lighting for a clean, polished feel, with SEO handled through Next.js\'s native metadata.\n\nLead capture is backed by real server-side logic: /api/contact is a Next.js Route Handler running on Vercel\'s Node.js serverless runtime — it parses the form payload, manages API keys securely through environment variables, and sends two emails through the Resend API (an inquiry notification to the agency and a confirmation to the sender) before returning a structured JSON response.',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-    github: 'https://github.com/nxu22/BuildTheBridge',
-    live: 'https://build-the-bridge-ohje.vercel.app/',
-    video: '/buildthebridge.mp4',
   },
 ]

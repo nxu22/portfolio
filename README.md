@@ -1,1 +1,1 @@
-https://vercel.com/nxu22s-projects/nan-portfolio
+https://nanxx-portfolio.vercel.app/

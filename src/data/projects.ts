@@ -19,9 +19,9 @@ export const projects: Project[] = [
     video: '/buildright.mp4',
   },
   {
-    title: 'Luminary Goods — WhatsApp Customer Service Agent',
+    title: 'Luminary Goods — AI Customer Support Agent on WhatsApp',
     description:
-      'A production-style AI customer service agent for an e-commerce home décor brand, deployed on WhatsApp via Meta Cloud API. Built with FastAPI and Anthropic\'s Claude, the agent handles order inquiries, shipping questions, returns, and refund policies in natural English. Features include per-user conversation memory, sliding-window context management, and automatic escalation to human agents when conversations exceed defined business policies or detect customer frustration.',
+      'A production-style AI customer service agent for an e-commerce home décor brand, deployed on WhatsApp via Meta Cloud API. Built with FastAPI and Anthropic\'s Claude, the agent handles order inquiries, shipping questions, returns, and refund policies in natural English. Features include per-user conversation memory, sliding-window context management, and automatic escalation to human agents when conversations exceed defined business policies or detect customer frustration.\n\nTech stack: Python · FastAPI · Anthropic Claude API · Meta WhatsApp Cloud API (Graph API webhooks) · ngrok (local tunneling)',
     tags: ['Python', 'FastAPI', 'Claude API', 'WhatsApp API'],
     github: 'https://github.com/nxu22/luminary-goods-whatsapp-agent',
     demo: '/demo-slideshow.html',

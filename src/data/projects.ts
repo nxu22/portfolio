@@ -5,6 +5,7 @@ export interface Project {
   github?: string
   live?: string
   video?: string
+  demo?: string
 }
 
 export const projects: Project[] = [
@@ -16,6 +17,14 @@ export const projects: Project[] = [
     github: 'https://github.com/nxu22/Buildright_construction',
     live: 'https://buildrightforconstruction.netlify.app/',
     video: '/buildright.mp4',
+  },
+  {
+    title: 'Luminary Goods — WhatsApp Customer Service Agent',
+    description:
+      'Luminary Goods is a WhatsApp customer service agent for a fictional home décor brand, handling order support, shipping updates, and return requests directly in WhatsApp at any hour. Customers message the number and get instant, intelligent replies from Aria — a custom AI agent that knows the brand\'s full policy and can escalate seamlessly to a human when a case goes beyond what policy can resolve.\n\nI built the full backend pipeline end to end. Incoming messages hit a FastAPI webhook server, pass through a deduplication check (Meta occasionally delivers the same event twice), and are routed through a Claude Haiku call with a sliding conversation window capped at 20 messages per user — so Aria always has context without letting history grow unbounded. The system prompt encodes the brand\'s complete service policy: shipping windows by region, return conditions, refund timelines, and accepted payment methods. Aria also monitors for escalation triggers — refund disputes, unresolved complaints, confrontational tone — and hands the conversation to a live agent automatically.\n\nI paid particular attention to reliability: the server always returns HTTP 200 to Meta regardless of what happens internally, preventing Meta from retrying and flooding the agent with repeated events, and if the AI layer fails for any reason customers receive a graceful fallback message instead of silence. The architecture is intentionally modular — deploying for a different brand means updating the system prompt and credentials, with no other code changes required. Built with FastAPI, Claude Haiku (Anthropic), and the Meta WhatsApp Cloud API.',
+    tags: ['Python', 'FastAPI', 'Claude API', 'WhatsApp API'],
+    github: 'https://github.com/nxu22/luminary-goods-whatsapp-agent',
+    demo: '/demo-slideshow.html',
   },
   {
     title: 'Build The Bridge — Cross-Border Marketing Agency',

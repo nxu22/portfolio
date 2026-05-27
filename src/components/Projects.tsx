@@ -38,6 +38,18 @@ function ProjectCard({ project }: { project: Project }) {
         </a>
       )}
 
+      {/* interactive demo */}
+      {project.demo && (
+        <div className="w-full bg-[#0f0f1a] flex justify-center items-center py-6">
+          <iframe
+            src={project.demo}
+            className="border-0"
+            style={{ width: '100%', height: '700px', overflow: 'hidden' }}
+            title={`${project.title} demo`}
+          />
+        </div>
+      )}
+
       <div className="p-6">
         <div className="flex items-start justify-between mb-3">
           <h3 className="font-serif text-xl text-blue italic">

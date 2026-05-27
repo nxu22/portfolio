@@ -40,7 +40,7 @@ function ProjectCard({ project }: { project: Project }) {
 
       {/* interactive demo */}
       {project.demo && (
-        <div className="w-full bg-[#0f0f1a] flex justify-center items-center py-6">
+        <div className="w-full bg-cream flex justify-center items-center py-6">
           <iframe
             src={project.demo}
             className="border-0"

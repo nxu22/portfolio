@@ -44,7 +44,7 @@ function ProjectCard({ project }: { project: Project }) {
           <iframe
             src={project.demo}
             className="border-0"
-            style={{ width: '100%', height: '700px', overflow: 'hidden' }}
+            style={{ width: '100%', height: '780px', overflow: 'hidden' }}
             title={`${project.title} demo`}
           />
         </div>

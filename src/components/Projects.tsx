@@ -125,7 +125,7 @@ export default function Projects() {
     <section id="projects" className="py-24 px-6 bg-cream">
       <div className="max-w-5xl mx-auto">
 
-        <div className="mb-14 text-center">
+        <div className="mb-14 text-left">
           <h2 className="font-serif text-5xl text-blue italic">My Projects</h2>
         </div>
 

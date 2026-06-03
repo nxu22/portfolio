@@ -10,7 +10,7 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: 'CaseFlow MB — Traffic Defense Case Management System',
+    title: 'CaseFlow MB — AI-Powered Traffic Defense Case Management',
     description:
       'CaseFlow MB is a full-stack case management application built for Manitoba traffic defense law firms. Lawyers log in securely and get a real-time view of all active cases — court dates, fine amounts, and case status — with the full lifecycle tracked from intake through to resolution: Open → In Progress → Won / Lost / Dismissed.\n\nThe standout feature is one-click AI document analysis powered by Claude: lawyers upload traffic tickets, court notices, and evidence directly to a private AWS S3 bucket, then hit a single button to get an instant summary that extracts key legal details, flags missing information, and surfaces defense considerations. Document access is handled through presigned URLs so files are never publicly exposed. I built the entire backend as a FastAPI service with SQLAlchemy and PostgreSQL, and the frontend as a Next.js 16 app with TypeScript and Tailwind.\n\nThe application is deployed on AWS: the FastAPI backend runs on EC2 with Gunicorn, the PostgreSQL database is on RDS, and documents are stored in a private S3 bucket. The full stack is containerized with Docker for consistent environments across development and production.',
     tags: ['Next.js', 'TypeScript', 'FastAPI', 'PostgreSQL', 'AWS', 'Docker', 'Claude API', 'Tailwind CSS'],

@@ -3,15 +3,6 @@ export default function Contact() {
     <section id="contact" className="py-24 px-6 bg-cream border-t border-blue/15">
       <div className="max-w-xl mx-auto text-center">
 
-        <p className="font-sans text-xs tracking-[0.4em] text-blue/40 uppercase mb-2">03 — Contact</p>
-        <h2 className="font-serif text-5xl text-blue italic mb-5">Say Hello</h2>
-
-        <div className="flex items-center justify-center gap-4 mb-8">
-          <span className="h-px w-14 bg-blue/25" />
-          <span className="text-orange text-sm">◆</span>
-          <span className="h-px w-14 bg-blue/25" />
-        </div>
-
         <p className="font-sans font-light text-blue/60 text-base leading-relaxed mb-10">
           I'm currently open to new opportunities. Whether you have a project
           in mind or just want to connect — I'd love to hear from you.

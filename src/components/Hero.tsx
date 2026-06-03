@@ -2,10 +2,10 @@ import photo from '../assets/photo.png'
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center bg-cream px-8 relative overflow-hidden gap-14 pt-16">
+    <section className="min-h-0 py-16 flex flex-col items-center justify-center bg-cream px-8 relative overflow-hidden gap-8 pt-20">
 
       {/* main row */}
-      <div className="flex flex-col-reverse sm:flex-row items-center justify-center gap-10 sm:gap-28 relative z-10 w-full max-w-4xl">
+      <div className="flex flex-col-reverse sm:flex-row items-center justify-center gap-8 sm:gap-14 relative z-10 w-full max-w-3xl">
 
         {/* text */}
         <div className="text-center sm:text-left">

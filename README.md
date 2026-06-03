@@ -19,6 +19,7 @@ I'm a full stack developer who builds complete, production-deployed web applicat
 
 | Project | Stack | Description |
 |---|---|---|
+| **CaseFlow MB — AI-Powered Traffic Defense Case Management** | Next.js, TypeScript, FastAPI, PostgreSQL, AWS, Docker, Claude API | AI case management system for law firms with document summarization, deployed on AWS EC2 + RDS + S3 |
 | **BuildRight — AI Agent** | React, Python, FastAPI, Claude API | RAG-powered renovation chatbot with lead capture and email delivery |
 | **Luminary Goods — WhatsApp Agent** | Python, FastAPI, Claude API, WhatsApp API | AI customer service agent deployed on WhatsApp via Meta Cloud API |
 | **Strange Light — E-commerce** | React, TypeScript, Supabase, Stripe | Full-stack lamp shop with auth, cart, and real Stripe payments |
@@ -29,8 +30,10 @@ I'm a full stack developer who builds complete, production-deployed web applicat
 
 **Frontend:** React, Next.js, TypeScript, Tailwind CSS, Framer Motion  
 **Backend:** Python, FastAPI, Node.js (Next.js Route Handlers)  
-**Databases:** Supabase, PostgreSQL  
-**AI:** Anthropic Claude API (RAG, agents, summarization)  
+**Databases:** Supabase, PostgreSQL, SQLAlchemy  
+**AI:** Anthropic Claude API (RAG, agents, summarization, document analysis)  
 **Payments:** Stripe  
 **APIs:** Meta WhatsApp Cloud API, Resend  
+**Cloud:** AWS (EC2, RDS, S3)  
+**Tools:** Docker, Git  
 **Deployment:** Vercel, Netlify  

@@ -8,12 +8,12 @@ export default function App() {
     <div className="font-sans antialiased bg-cream text-blue min-h-screen flex flex-col lg:flex-row">
 
       {/* Sidebar — full width on mobile, sticky column on desktop */}
-      <aside className="w-full lg:w-[38%] lg:sticky lg:top-0 lg:h-screen lg:border-r lg:border-blue/10 lg:shrink-0">
+      <aside className="w-full lg:w-[28%] lg:sticky lg:top-0 lg:h-screen lg:border-r lg:border-blue/10 lg:shrink-0">
         <Hero />
       </aside>
 
       {/* Right scrollable content */}
-      <main className="w-full lg:w-[62%]">
+      <main className="w-full lg:w-[72%]">
         <Projects />
         <Skills />
         <Contact />

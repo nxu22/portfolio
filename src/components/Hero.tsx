@@ -2,7 +2,7 @@ import photo from '../assets/photo.png'
 
 export default function Hero() {
   return (
-    <div className="flex flex-col justify-between h-full px-10 py-16">
+    <div className="flex flex-col justify-between h-full px-8 py-12 lg:px-10 lg:py-16">
 
       <div>
         <h1 className="font-serif text-4xl font-bold text-blue italic mb-5">

@@ -5,15 +5,15 @@ import Contact from './components/Contact'
 
 export default function App() {
   return (
-    <div className="font-sans antialiased bg-cream text-blue min-h-screen flex">
+    <div className="font-sans antialiased bg-cream text-blue min-h-screen flex flex-col lg:flex-row">
 
-      {/* Left sticky sidebar */}
-      <aside className="w-[38%] sticky top-0 h-screen border-r border-blue/10 shrink-0">
+      {/* Sidebar — full width on mobile, sticky column on desktop */}
+      <aside className="w-full lg:w-[38%] lg:sticky lg:top-0 lg:h-screen lg:border-r lg:border-blue/10 lg:shrink-0">
         <Hero />
       </aside>
 
       {/* Right scrollable content */}
-      <main className="w-[62%]">
+      <main className="w-full lg:w-[62%]">
         <Projects />
         <Skills />
         <Contact />

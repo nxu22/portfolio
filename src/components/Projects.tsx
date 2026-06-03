@@ -44,7 +44,7 @@ function ProjectCard({ project }: { project: Project }) {
           <iframe
             src={project.demo}
             className="border-0"
-            style={{ width: '100%', height: '780px', overflow: 'hidden' }}
+            style={{ width: '100%', height: '500px', overflow: 'hidden' }}
             title={`${project.title} demo`}
           />
         </div>
@@ -129,7 +129,7 @@ export default function Projects() {
           <h2 className="font-serif text-3xl text-blue italic">My Projects</h2>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {projects.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}

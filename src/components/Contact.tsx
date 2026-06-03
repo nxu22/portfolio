@@ -26,7 +26,7 @@ export default function Contact() {
 
         <div className="flex justify-center gap-8 font-sans text-xs tracking-[0.25em] uppercase text-blue/40">
           <a
-            href="https://github.com/nanxu1279"
+            href="https://github.com/nxu22"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-orange transition-colors duration-200"

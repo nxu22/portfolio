@@ -50,9 +50,9 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
       )}
 
-      <div className="p-4 sm:p-5">
-        <div className="flex items-start justify-between mb-2">
-          <h3 className="font-serif text-base sm:text-lg text-blue italic">
+      <div className="p-3">
+        <div className="flex items-start justify-between mb-1.5">
+          <h3 className="font-serif text-sm sm:text-base text-blue italic">
             {project.live ? (
               <a href={project.live} target="_blank" rel="noopener noreferrer" className="hover:text-orange transition-colors duration-200">
                 {project.title}
@@ -89,7 +89,7 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
         </div>
 
-        <div className="font-sans font-light text-blue/60 text-xs leading-relaxed mb-2">
+        <div className="font-sans font-light text-blue/60 text-[11px] leading-relaxed mb-2">
           <p>{paragraphs[0]}</p>
           {expanded && paragraphs.slice(1).map((para, i) => (
             <p key={i} className="mt-3">{para}</p>
@@ -105,11 +105,11 @@ function ProjectCard({ project }: { project: Project }) {
           </button>
         )}
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="px-2.5 py-0.5 bg-blue/10 text-blue text-xs font-sans tracking-wide rounded-full"
+              className="px-2 py-0.5 bg-blue/10 text-blue text-[10px] font-sans tracking-wide rounded-full"
             >
               {tag}
             </span>
@@ -122,14 +122,14 @@ function ProjectCard({ project }: { project: Project }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-16 px-6 bg-cream">
-      <div className="max-w-4xl mx-auto">
+    <section id="projects" className="py-10 px-4 bg-cream">
+      <div className="max-w-3xl mx-auto">
 
-        <div className="mb-10 text-right">
-          <h2 className="font-serif text-4xl text-blue italic">My Projects</h2>
+        <div className="mb-7 text-right">
+          <h2 className="font-serif text-3xl text-blue italic">My Projects</h2>
         </div>
 
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4">
           {projects.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}

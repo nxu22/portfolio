@@ -50,9 +50,9 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
       )}
 
-      <div className="p-6">
-        <div className="flex items-start justify-between mb-3">
-          <h3 className="font-serif text-xl text-blue italic">
+      <div className="p-4 sm:p-5">
+        <div className="flex items-start justify-between mb-2">
+          <h3 className="font-serif text-base sm:text-lg text-blue italic">
             {project.live ? (
               <a href={project.live} target="_blank" rel="noopener noreferrer" className="hover:text-orange transition-colors duration-200">
                 {project.title}
@@ -89,7 +89,7 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
         </div>
 
-        <div className="font-sans font-light text-blue/60 text-sm leading-relaxed mb-3">
+        <div className="font-sans font-light text-blue/60 text-xs leading-relaxed mb-2">
           <p>{paragraphs[0]}</p>
           {expanded && paragraphs.slice(1).map((para, i) => (
             <p key={i} className="mt-3">{para}</p>
@@ -122,14 +122,14 @@ function ProjectCard({ project }: { project: Project }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 px-6 bg-cream">
-      <div className="max-w-5xl mx-auto">
+    <section id="projects" className="py-16 px-6 bg-cream">
+      <div className="max-w-4xl mx-auto">
 
-        <div className="mb-14 text-right">
-          <h2 className="font-serif text-5xl text-blue italic">My Projects</h2>
+        <div className="mb-10 text-right">
+          <h2 className="font-serif text-4xl text-blue italic">My Projects</h2>
         </div>
 
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-6">
           {projects.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}

@@ -23,7 +23,7 @@ function ProjectCard({ project }: { project: Project }) {
   const hasMore = paragraphs.length > 1
 
   return (
-    <div className={`group bg-cream border border-blue/20 rounded-xl overflow-hidden hover:border-orange/60 transition-all duration-300 ${project.demo ? 'sm:col-span-2' : ''}`}>
+    <div className="group bg-cream border border-blue/20 rounded-xl overflow-hidden hover:border-orange/60 transition-all duration-300 break-inside-avoid mb-4">
       {/* video preview */}
       {project.video && (
         <a href={project.live} target="_blank" rel="noopener noreferrer">
@@ -129,7 +129,7 @@ export default function Projects() {
           <h2 className="font-serif text-3xl text-blue italic">My Projects</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="sm:columns-2 gap-4 space-y-4">
           {projects.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}

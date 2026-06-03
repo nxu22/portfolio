@@ -31,7 +31,7 @@ export default function Hero() {
         <img
           src={photo}
           alt="Nan"
-          className="w-16 h-16 object-cover rounded-full drop-shadow-md shrink-0"
+          className="w-16 drop-shadow-md shrink-0"
         />
       </div>
 

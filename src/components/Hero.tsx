@@ -2,14 +2,14 @@ import photo from '../assets/photo.png'
 
 export default function Hero() {
   return (
-    <section className="min-h-0 py-16 flex flex-col items-center justify-center bg-cream px-8 relative overflow-hidden gap-8 pt-20">
+    <section className="min-h-0 py-12 flex flex-col items-start justify-start bg-cream px-12 relative overflow-hidden gap-8 pt-24">
 
       {/* main row */}
-      <div className="flex flex-col-reverse sm:flex-row items-center justify-center gap-8 sm:gap-14 relative z-10 w-full max-w-3xl">
+      <div className="flex flex-row items-center gap-10 relative z-10 w-full max-w-3xl">
 
         {/* text */}
-        <div className="text-center sm:text-left">
-          <h1 className="font-serif text-5xl sm:text-6xl font-bold text-blue italic mb-8">
+        <div className="text-left">
+          <h1 className="font-serif text-4xl sm:text-[2.6rem] font-bold text-blue italic mb-8">
             Hi, I'm Nan.
           </h1>
 
@@ -35,7 +35,7 @@ export default function Hero() {
       </div>
 
       {/* scroll hint */}
-      <p className="font-sans font-light text-blue/40 text-sm text-center">
+      <p className="font-sans font-light text-blue/40 text-sm text-left">
         Scroll down to{' '}
         <a href="#projects" className="text-blue/60 underline underline-offset-4 decoration-blue/25 hover:text-orange hover:decoration-orange transition-colors duration-200">
           view my projects

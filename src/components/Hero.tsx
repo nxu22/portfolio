@@ -9,9 +9,16 @@ export default function Hero() {
 
         {/* text */}
         <div className="text-left">
-          <h1 className="font-serif text-4xl sm:text-[2.6rem] font-bold text-blue italic mb-8">
+          <h1 className="font-serif text-4xl sm:text-[2.6rem] font-bold text-blue italic mb-4">
             Hi, I'm Nan.
           </h1>
+
+          {/* photo — below title */}
+          <img
+            src={photo}
+            alt="Nan"
+            className="w-32 sm:w-40 drop-shadow-md mb-6"
+          />
 
           <p className="font-sans font-light text-blue/65 text-lg sm:text-xl leading-relaxed max-w-sm">
             I'm a full stack developer living with my buddy Togo. I build
@@ -21,15 +28,6 @@ export default function Hero() {
               Want to work together?
             </a>
           </p>
-        </div>
-
-        {/* photo */}
-        <div className="shrink-0">
-          <img
-            src={photo}
-            alt="Nan"
-            className="w-40 sm:w-52 drop-shadow-md"
-          />
         </div>
 
       </div>

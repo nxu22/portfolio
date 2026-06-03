@@ -23,7 +23,7 @@ function ProjectCard({ project }: { project: Project }) {
   const hasMore = paragraphs.length > 1
 
   return (
-    <div className="group bg-cream border border-blue/20 rounded-xl overflow-hidden hover:border-orange/60 transition-all duration-300">
+    <div className={`group bg-cream border border-blue/20 rounded-xl overflow-hidden hover:border-orange/60 transition-all duration-300 ${project.demo ? 'sm:col-span-2' : ''}`}>
       {/* video preview */}
       {project.video && (
         <a href={project.live} target="_blank" rel="noopener noreferrer">

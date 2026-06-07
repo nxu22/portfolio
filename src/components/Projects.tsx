@@ -1,5 +1,38 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { projects, type Project } from '../data/projects'
+
+function VideoModal({ src, onClose }: { src: string; onClose: () => void }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [onClose])
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div className="relative max-w-4xl w-full mx-4" onClick={e => e.stopPropagation()}>
+        <button
+          onClick={onClose}
+          className="absolute -top-9 right-0 text-white/80 hover:text-white text-sm font-sans tracking-wide transition-colors"
+        >
+          Close ✕
+        </button>
+        <video
+          ref={videoRef}
+          src={src}
+          controls
+          autoPlay
+          className="w-full rounded-xl shadow-2xl"
+        />
+      </div>
+    </div>
+  )
+}
 
 function GitHubIcon() {
   return (
@@ -19,6 +52,7 @@ function ExternalLinkIcon() {
 
 function ProjectCard({ project }: { project: Project }) {
   const [expanded, setExpanded] = useState(false)
+  const [videoOpen, setVideoOpen] = useState(false)
   const paragraphs = project.description.split('\n\n')
   const hasMore = paragraphs.length > 1
 
@@ -26,16 +60,29 @@ function ProjectCard({ project }: { project: Project }) {
     <div className="group bg-cream border border-blue/20 rounded-xl overflow-hidden hover:border-orange/60 transition-all duration-300 break-inside-avoid mb-4">
       {/* video preview */}
       {project.video && (
-        <a href={project.live} target="_blank" rel="noopener noreferrer">
-          <video
-            src={project.video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full cursor-pointer"
-          />
-        </a>
+        <>
+          <div
+            className="relative cursor-pointer group/video"
+            onClick={() => setVideoOpen(true)}
+          >
+            <video
+              src={project.video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full"
+            />
+            <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover/video:opacity-100 transition-opacity duration-200">
+              <div className="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center shadow-lg">
+                <svg className="w-5 h-5 text-blue ml-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          {videoOpen && <VideoModal src={project.video} onClose={() => setVideoOpen(false)} />}
+        </>
       )}
 
       {/* interactive demo */}

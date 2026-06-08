@@ -1,15 +1,19 @@
 const skillGroups = [
   {
     label: 'Frontend',
-    skills: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'HTML / CSS'],
+    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML / CSS'],
   },
   {
     label: 'Backend',
-    skills: ['Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'REST APIs'],
+    skills: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Node.js'],
   },
   {
-    label: 'Tools & Other',
-    skills: ['Git', 'Docker', 'Linux', 'GitHub Actions / CI/CD', 'Figma'],
+    label: 'AI & APIs',
+    skills: ['Claude API', 'MCP', 'WhatsApp API', 'Stripe', 'AWS (EC2 · RDS · S3)', 'Resend'],
+  },
+  {
+    label: 'Tools',
+    skills: ['Git', 'Docker', 'GitHub Actions', 'Vercel', 'Netlify', 'ngrok'],
   },
 ]
 
@@ -26,7 +30,7 @@ export default function Skills() {
           <span className="hidden sm:block h-px flex-1 bg-blue/15 mb-3" />
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-5">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
           {skillGroups.map((group) => (
             <div
               key={group.label}

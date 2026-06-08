@@ -9,7 +9,7 @@ const skillGroups = [
   },
   {
     label: 'Tools & Other',
-    skills: ['Git', 'Docker', 'Linux', 'CI / CD', 'Figma'],
+    skills: ['Git', 'Docker', 'Linux', 'GitHub Actions / CI/CD', 'Figma'],
   },
 ]
 

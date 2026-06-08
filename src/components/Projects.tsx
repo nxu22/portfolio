@@ -1,6 +1,27 @@
 import { useState, useEffect, useRef } from 'react'
 import { projects, type Project } from '../data/projects'
 
+function linkifyText(text: string): React.ReactNode[] {
+  const re = /\b([a-z0-9-]+\.(?:com|site|io|ca|co|net|org|app|dev|ai)(?:\/\S*)?)\b/gi
+  const result: React.ReactNode[] = []
+  let last = 0
+  let m: RegExpExecArray | null
+  re.lastIndex = 0
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) result.push(text.slice(last, m.index))
+    const href = `https://${m[0]}`
+    result.push(
+      <a key={m.index} href={href} target="_blank" rel="noopener noreferrer"
+        className="text-orange hover:underline">
+        {m[0]}
+      </a>
+    )
+    last = re.lastIndex
+  }
+  if (last < text.length) result.push(text.slice(last))
+  return result
+}
+
 function VideoModal({ src, onClose }: { src: string; onClose: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -137,9 +158,9 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
 
         <div className="font-sans font-light text-blue/60 text-[11px] leading-relaxed mb-2">
-          <p>{paragraphs[0]}</p>
+          <p>{linkifyText(paragraphs[0])}</p>
           {expanded && paragraphs.slice(1).map((para, i) => (
-            <p key={i} className="mt-3">{para}</p>
+            <p key={i} className="mt-3">{linkifyText(para)}</p>
           ))}
         </div>
 

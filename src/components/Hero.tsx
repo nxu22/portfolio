@@ -11,11 +11,11 @@ const skillGroups = [
   },
   {
     label: 'AI & APIs',
-    skills: ['Claude API', 'WhatsApp API', 'Stripe', 'AWS (EC2 · RDS · S3)', 'Resend'],
+    skills: ['Claude API', 'MCP', 'WhatsApp API', 'Stripe', 'AWS (EC2 · RDS · S3)', 'Resend'],
   },
   {
     label: 'Tools',
-    skills: ['Git', 'Docker', 'Vercel', 'Netlify', 'ngrok'],
+    skills: ['Git', 'Docker', 'GitHub Actions', 'CI/CD', 'Vercel', 'Netlify', 'ngrok'],
   },
 ]
 

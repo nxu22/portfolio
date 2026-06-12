@@ -1,5 +1,38 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { projects, type Project } from '../data/projects'
+import { projects as defaultProjects, type Project } from '../data/projects'
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  KeyboardSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from '@dnd-kit/core'
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  rectSortingStrategy,
+} from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
+
+const STORAGE_KEY = 'portfolio-project-order'
+
+function loadSavedOrder(defaults: Project[]): Project[] {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (!saved) return defaults
+    const order: string[] = JSON.parse(saved)
+    const map = new Map(defaults.map(p => [p.title, p]))
+    const sorted = order.flatMap(t => { const p = map.get(t); return p ? [p] : [] })
+    const missing = defaults.filter(p => !order.includes(p.title))
+    return [...sorted, ...missing]
+  } catch {
+    return defaults
+  }
+}
 
 function linkifyText(text: string): React.ReactNode[] {
   const re = /\b([a-z0-9-]+\.(?:com|site|io|ca|co|net|org|app|dev|ai)(?:\/\S*)?)\b/gi
@@ -71,14 +104,41 @@ function ExternalLinkIcon() {
   )
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function GripIcon() {
+  return (
+    <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 16 16">
+      <circle cx="5" cy="3.5" r="1.3" />
+      <circle cx="11" cy="3.5" r="1.3" />
+      <circle cx="5" cy="8" r="1.3" />
+      <circle cx="11" cy="8" r="1.3" />
+      <circle cx="5" cy="12.5" r="1.3" />
+      <circle cx="11" cy="12.5" r="1.3" />
+    </svg>
+  )
+}
+
+function ProjectCard({
+  project,
+  dragHandleProps,
+}: {
+  project: Project
+  dragHandleProps?: React.HTMLAttributes<HTMLDivElement>
+}) {
   const [expanded, setExpanded] = useState(false)
   const [videoOpen, setVideoOpen] = useState(false)
   const paragraphs = project.description.split('\n\n')
   const hasMore = paragraphs.length > 1
 
   return (
-    <div className="group bg-cream border border-blue/20 rounded-xl overflow-hidden hover:border-orange/60 transition-all duration-300 break-inside-avoid mb-4">
+    <div className="group bg-cream border border-blue/20 rounded-xl overflow-hidden hover:border-orange/60 transition-all duration-300">
+      {/* drag handle */}
+      <div
+        {...dragHandleProps}
+        className="flex justify-center py-1.5 cursor-grab active:cursor-grabbing text-blue/20 hover:text-blue/50 transition-colors touch-none select-none"
+      >
+        <GripIcon />
+      </div>
+
       {/* video preview */}
       {project.video && (
         <>
@@ -199,21 +259,56 @@ function ProjectCard({ project }: { project: Project }) {
   )
 }
 
-export default function Projects() {
+function SortableCard({ project }: { project: Project }) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: project.title })
+
   return (
-    <section id="projects" className="py-10 px-4 bg-cream">
-      <div className="max-w-3xl mx-auto">
+    <div
+      ref={setNodeRef}
+      style={{
+        transform: CSS.Transform.toString(transform),
+        transition,
+        opacity: isDragging ? 0.4 : 1,
+        zIndex: isDragging ? 10 : 'auto',
+        position: 'relative',
+      }}
+    >
+      <ProjectCard project={project} dragHandleProps={{ ...attributes, ...listeners }} />
+    </div>
+  )
+}
 
-        <div className="mb-7 text-right">
-          <h2 className="font-serif text-3xl text-blue italic">My Projects</h2>
-        </div>
+export default function Projects() {
+  const [items, setItems] = useState<Project[]>(() => loadSavedOrder(defaultProjects))
 
-        <div className="sm:columns-2 gap-4 space-y-4">
-          {projects.map((project) => (
-            <ProjectCard key={project.title} project={project} />
-          ))}
-        </div>
-      </div>
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  )
+
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event
+    if (!over || active.id === over.id) return
+    setItems(prev => {
+      const oldIndex = prev.findIndex(p => p.title === active.id)
+      const newIndex = prev.findIndex(p => p.title === over.id)
+      const next = arrayMove(prev, oldIndex, newIndex)
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(next.map(p => p.title)))
+      return next
+    })
+  }
+
+  return (
+    <section id="projects" className="py-8 px-8 bg-cream">
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <SortableContext items={items.map(p => p.title)} strategy={rectSortingStrategy}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {items.map(project => (
+              <SortableCard key={project.title} project={project} />
+            ))}
+          </div>
+        </SortableContext>
+      </DndContext>
     </section>
   )
 }

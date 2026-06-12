@@ -1,75 +1,57 @@
+import { useState } from 'react'
 import photo from '../assets/photo.png'
 
-const skillGroups = [
-  {
-    label: 'Frontend',
-    skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML / CSS'],
-  },
-  {
-    label: 'Backend',
-    skills: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Node.js'],
-  },
-  {
-    label: 'AI & APIs',
-    skills: ['Claude API', 'MCP', 'WhatsApp API', 'Stripe', 'AWS (EC2 · RDS · S3)', 'Resend'],
-  },
-  {
-    label: 'Tools',
-    skills: ['Git', 'Docker', 'GitHub Actions', 'CI/CD', 'Vercel', 'Netlify', 'ngrok'],
-  },
-]
-
 export default function Hero() {
+  const [open, setOpen] = useState(false)
+
   return (
-    <div className="flex flex-col h-full px-8 py-12 lg:px-10 lg:py-16 overflow-y-auto">
+    <div
+      className="relative flex items-center gap-3 cursor-default"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <h1 className={`font-serif text-xl font-bold italic transition-colors duration-200 ${open ? 'text-orange' : 'text-blue'}`}>
+        Hi, I'm Nan.
+      </h1>
+      <img
+        src={photo}
+        alt="Nan"
+        className={`w-10 drop-shadow-md shrink-0 transition-transform duration-200 ${open ? 'scale-105' : ''}`}
+      />
 
-      {/* Title + photo side by side */}
-      <div className="flex items-center gap-4 mb-5">
-        <h1 className="font-serif text-4xl font-bold text-blue italic">
-          Hi, I'm Nan.
-        </h1>
-        <img
-          src={photo}
-          alt="Nan"
-          className="w-16 drop-shadow-md shrink-0"
-        />
-      </div>
-
-      <p className="font-sans font-light text-blue/65 text-sm leading-relaxed mb-8">
-        I build full-stack web apps and AI-powered tools — case management systems,
-        e-commerce stores, WhatsApp agents, and AI chatbots that capture leads and
-        automate client communication.{' '}
+      {/* Contact popup */}
+      <div
+        className={`absolute right-0 top-full mt-2 w-64 bg-cream border border-blue/20 rounded-xl shadow-lg p-4 transition-all duration-200 ${open ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-1'}`}
+      >
+        <p className="font-sans font-light text-blue/60 text-xs leading-relaxed mb-3">
+          I'm currently open to new opportunities. Whether you have a project
+          in mind or just want to connect — I'd love to hear from you.
+        </p>
         <a
-          href="#contact"
-          className="text-blue/70 underline underline-offset-4 decoration-blue/30 hover:text-orange hover:decoration-orange transition-colors duration-200"
+          href="mailto:nanxu1279@gmail.com"
+          className="block text-center px-5 py-2 bg-blue text-cream font-sans text-[10px] tracking-[0.25em] uppercase rounded-full hover:bg-blue/80 transition-colors duration-300 mb-3"
         >
-          Want to work together?
+          Send a Message
         </a>
-      </p>
-
-      {/* Skills */}
-      <div className="flex flex-col gap-5">
-        {skillGroups.map((group) => (
-          <div key={group.label} className="border-l-2 border-blue/30 pl-4">
-            <h3 className="font-sans text-[10px] tracking-[0.35em] text-blue/50 uppercase mb-2">
-              {group.label}
-            </h3>
-            <div className="flex flex-wrap gap-x-3 gap-y-1">
-              {group.skills.map((skill) => (
-                <span key={skill} className="font-sans font-light text-xs text-blue/70 flex items-center gap-1">
-                  <span className="w-1 h-1 rounded-full bg-orange shrink-0" />
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
+        <div className="flex justify-center gap-6 font-sans text-[10px] tracking-[0.25em] uppercase text-blue/40">
+          <a
+            href="https://github.com/nxu22"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-orange transition-colors duration-200"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-orange transition-colors duration-200"
+          >
+            LinkedIn
+          </a>
+        </div>
       </div>
-
-      <p className="font-sans font-light text-blue/30 text-xs mt-auto pt-8">
-        © {new Date().getFullYear()} Nan Xu
-      </p>
-
     </div>
   )
 }

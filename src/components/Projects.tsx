@@ -106,6 +106,17 @@ function ProjectCard({ project }: { project: Project }) {
         </>
       )}
 
+      {/* static screenshot */}
+      {project.image && !project.video && (
+        <a href={project.live ?? project.github} target="_blank" rel="noopener noreferrer">
+          <img
+            src={project.image}
+            alt={`${project.title} screenshot`}
+            className="w-full object-cover"
+          />
+        </a>
+      )}
+
       {/* interactive demo */}
       {project.demo && (
         <div className="w-full bg-cream flex justify-center items-center py-6">

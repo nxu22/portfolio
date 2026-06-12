@@ -6,14 +6,24 @@ export interface Project {
   live?: string
   video?: string
   demo?: string
+  image?: string
 }
 
 export const projects: Project[] = [
   {
+    title: 'WildWatch — AI Wildlife Camera Analysis Agent',
+    description:
+      'WildWatch is an AI agent that watches wildlife camera footage and automatically identifies animals, flags unusual behaviour, and suggests a follow-up action — without a human watching the screen. Upload a video, and the system handles the rest.\n\nThe agent follows a three-stage loop: Perceive → Decide → Act. OpenCV reads the video and samples one frame per second. Claude Fable 5 (Vision) analyzes the frames and returns structured JSON — scientific species name, a noteworthy flag, a one-line observation, and a suggested action. The result is written to SQLite; anything flagged as noteworthy is recorded in a notification log for review.\n\nThe hardest engineering problem was consistency. Early versions returned "goat", "Alpine chamois", and "Chamois" across three runs of the same 30-second clip — three strings for the same animal, causing duplicates and making species tracking useless. I fixed it in three steps: upgrading to claude-fable-5 (which immediately returned the full scientific name "Chamois (Rupicapra rupicapra)" instead of a generic label); switching to multi-frame batching — 3 consecutive frames per Claude call — so the model can cross-reference angles and reduce misidentification; and adding an OpenCV motion filter (cv2.absdiff(), threshold 5.0) that skips static frames entirely, so only active moments reach the model.\n\nAccuracy is validated by eval.py, a repeatable test script that runs a known clip, compares output against expected results, and scores each criterion. On the 30-second chamois clip: ✓ Animal detected · ✓ Species = "Chamois (Rupicapra rupicapra)" · ✓ Noteworthy = True — 3/3, reproducible via docker exec. The FrameSource ABC keeps the pipeline decoupled from the video source, so a live RTSP stream could be swapped in without touching any other code.',
+    tags: ['Claude Vision API', 'claude-fable-5', 'OpenCV', 'AI Agent', 'Python', 'FastAPI', 'React', 'Tailwind CSS', 'SQLite', 'Docker'],
+    github: 'https://github.com/nxu22/wildwatch',
+    live: 'https://wildwatch-eux3.onrender.com/',
+    image: '/wildwatch.png',
+  },
+  {
     title: 'CaseFlow MB — AI-Powered Traffic Defense Case Management',
     description:
       'A full-stack case management system for Manitoba traffic defense law firms — tracking HTA violation cases from intake through resolution, with client profiles and a per-case document library.\n\nThe core feature is a human-in-the-loop AI intake agent built with LangGraph: extracting document details, looking up real HTA statutes, retrieving similar past cases, and drafting a legal memo — then pausing for lawyer review before any DB write. The AI never acts unilaterally on legal work.\n\nAgent state is persisted with PostgresSaver on AWS RDS, surviving server restarts across Gunicorn workers. Also ships an MCP server (FastMCP) exposing case data as agent tools for Claude Desktop, and a public demo endpoint with server-side API key proxying and per-IP rate limiting.\n\nDeployment is fully automated through GitHub Actions: every push to main triggers an SSH deploy to AWS EC2, rebuilding the stack via Docker Compose with zero downtime and no manual server access required. Live demo: caseflowmb.site/demo',
-    tags: ['LangGraph', 'MCP', 'Human-in-the-loop', 'Next.js', 'TypeScript', 'FastAPI', 'PostgreSQL', 'AWS', 'Docker', 'GitHub Actions', 'Claude API'],
+    tags: ['LangGraph', 'MCP', 'Human-in-the-loop', 'Next.js', 'TypeScript', 'FastAPI', 'PostgreSQL', 'AWS', 'Docker', 'GitHub Actions', 'CI/CD', 'Claude API'],
     github: 'https://github.com/nxu22/CaseFlow-MB',
     live: 'https://caseflowmb.site',
     video: '/caseflow.mp4',

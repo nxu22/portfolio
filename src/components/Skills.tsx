@@ -5,15 +5,15 @@ const skillGroups = [
   },
   {
     label: 'Backend',
-    skills: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Node.js'],
+    skills: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'SQLite', 'Node.js'],
   },
   {
     label: 'AI & APIs',
-    skills: ['Claude API', 'MCP', 'WhatsApp API', 'Stripe', 'AWS (EC2 · RDS · S3)', 'Resend'],
+    skills: ['Claude API', 'OpenCV', 'MCP', 'WhatsApp API', 'Stripe', 'AWS (EC2 · RDS · S3)', 'Resend'],
   },
   {
     label: 'Tools',
-    skills: ['Git', 'Docker', 'GitHub Actions', 'Vercel', 'Netlify', 'ngrok'],
+    skills: ['Git', 'Docker', 'GitHub Actions', 'CI/CD', 'Vercel', 'Netlify', 'ngrok'],
   },
 ]
 

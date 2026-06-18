@@ -139,6 +139,45 @@ function ProjectCard({
         <GripIcon />
       </div>
 
+      {/* title + links — above media */}
+      <div className="px-3 pb-2 flex items-start justify-between">
+        <h3 className="font-serif text-sm sm:text-base text-blue italic font-semibold">
+          {project.live ? (
+            <a href={project.live} target="_blank" rel="noopener noreferrer" className="hover:text-orange transition-colors duration-200">
+              {project.title}
+            </a>
+          ) : project.title}
+        </h3>
+        <div className="flex items-center gap-3 ml-3 shrink-0 text-blue/30 group-hover:text-blue/60 transition-colors">
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-orange transition-colors"
+              aria-label="Live site"
+            >
+              <ExternalLinkIcon />
+            </a>
+          )}
+          {project.github ? (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-orange transition-colors"
+              aria-label="GitHub"
+            >
+              <GitHubIcon />
+            </a>
+          ) : (
+            <span className="opacity-30 cursor-default">
+              <GitHubIcon />
+            </span>
+          )}
+        </div>
+      </div>
+
       {/* video preview */}
       {project.video && (
         <>
@@ -190,44 +229,6 @@ function ProjectCard({
       )}
 
       <div className="p-3">
-        <div className="flex items-start justify-between mb-1.5">
-          <h3 className="font-serif text-sm sm:text-base text-blue italic">
-            {project.live ? (
-              <a href={project.live} target="_blank" rel="noopener noreferrer" className="hover:text-orange transition-colors duration-200">
-                {project.title}
-              </a>
-            ) : project.title}
-          </h3>
-          <div className="flex items-center gap-3 ml-3 shrink-0 text-blue/30 group-hover:text-blue/60 transition-colors">
-            {project.live && (
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-orange transition-colors"
-                aria-label="Live site"
-              >
-                <ExternalLinkIcon />
-              </a>
-            )}
-            {project.github ? (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-orange transition-colors"
-                aria-label="GitHub"
-              >
-                <GitHubIcon />
-              </a>
-            ) : (
-              <span className="opacity-30 cursor-default">
-                <GitHubIcon />
-              </span>
-            )}
-          </div>
-        </div>
-
         <div className="font-sans font-light text-blue/60 text-[11px] leading-relaxed mb-2">
           <p>{linkifyText(paragraphs[0])}</p>
           {expanded && paragraphs.slice(1).map((para, i) => (

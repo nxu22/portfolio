@@ -4,10 +4,10 @@ import Projects from './components/Projects'
 import Contact from './components/Contact'
 
 const skillGroups = [
-  { label: 'Frontend', skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML / CSS'] },
+  { label: 'AI & APIs', skills: ['Claude API', 'LangGraph', 'RAG', 'Agent Orchestration', 'ChromaDB', 'Langfuse', 'Eval Harness', 'OpenCV', 'MCP', 'WhatsApp API', 'Stripe', 'Resend'] },
   { label: 'Backend', skills: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'SQLite', 'Node.js'] },
-  { label: 'AI & APIs', skills: ['Claude API', 'OpenCV', 'MCP', 'WhatsApp API', 'Stripe', 'AWS (EC2 · RDS · S3)', 'Resend'] },
-  { label: 'Tools', skills: ['Git', 'Docker', 'GitHub Actions', 'CI/CD', 'Vercel', 'Netlify', 'ngrok'] },
+  { label: 'Frontend', skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML / CSS'] },
+  { label: 'Tools', skills: ['Git', 'Docker', 'GitHub Actions', 'CI/CD', 'AWS (EC2 · RDS · S3)', 'Vercel', 'Netlify', 'ngrok'] },
 ]
 
 export default function App() {

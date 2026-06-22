@@ -55,6 +55,61 @@ function linkifyText(text: string): React.ReactNode[] {
   return result
 }
 
+function ExternalVideoModal({ src, onClose }: { src: string; onClose: () => void }) {
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', handler)
+    return () => document.removeEventListener('keydown', handler)
+  }, [onClose])
+
+  const embedSrc = src.replace('streamable.com/', 'streamable.com/e/')
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div className="relative max-w-4xl w-full mx-4" onClick={e => e.stopPropagation()}>
+        <button
+          onClick={onClose}
+          className="absolute -top-9 right-0 text-white/80 hover:text-white text-sm font-sans tracking-wide transition-colors"
+        >
+          Close ✕
+        </button>
+        <div className="relative w-full rounded-xl overflow-hidden shadow-2xl" style={{ paddingBottom: '56.25%' }}>
+          <iframe
+            src={embedSrc}
+            className="absolute inset-0 w-full h-full border-0"
+            allowFullScreen
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function LazyVideo({ src, className }: { src: string; className?: string }) {
+  const ref = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !el.src) {
+          el.src = src
+          el.play().catch(() => {})
+        }
+      },
+      { rootMargin: '300px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [src])
+
+  return <video ref={ref} loop muted playsInline className={className} />
+}
+
 function VideoModal({ src, onClose }: { src: string; onClose: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -126,6 +181,7 @@ function ProjectCard({
 }) {
   const [expanded, setExpanded] = useState(false)
   const [videoOpen, setVideoOpen] = useState(false)
+  const [externalVideoOpen, setExternalVideoOpen] = useState(false)
   const paragraphs = project.description.split('\n\n')
   const hasMore = paragraphs.length > 1
 
@@ -185,14 +241,7 @@ function ProjectCard({
             className="relative cursor-pointer group/video"
             onClick={() => setVideoOpen(true)}
           >
-            <video
-              src={project.video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full"
-            />
+            <LazyVideo src={project.video} className="w-full" />
             <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover/video:opacity-100 transition-opacity duration-200">
               <div className="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center shadow-lg">
                 <svg className="w-5 h-5 text-blue ml-1" fill="currentColor" viewBox="0 0 24 24">
@@ -205,13 +254,42 @@ function ProjectCard({
         </>
       )}
 
+      {/* external video link — thumbnail + play button, opens modal on click */}
+      {project.videoLink && (
+        <>
+          <div
+            className="relative cursor-pointer group/video"
+            onClick={() => setExternalVideoOpen(true)}
+          >
+            <div className="relative w-full aspect-video bg-blue/10 overflow-hidden">
+              <img
+                src={project.image ?? `https://cdn-cf-east.streamable.com/image/${project.videoLink.split('/').pop()}.jpg`}
+                alt={`${project.title} preview`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+                onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }}
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover/video:opacity-100 transition-opacity duration-200">
+                <div className="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center shadow-lg">
+                  <svg className="w-5 h-5 text-blue ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          {externalVideoOpen && <ExternalVideoModal src={project.videoLink} onClose={() => setExternalVideoOpen(false)} />}
+        </>
+      )}
+
       {/* static screenshot */}
-      {project.image && !project.video && (
+      {project.image && !project.video && !project.videoLink && (
         <a href={project.live ?? project.github} target="_blank" rel="noopener noreferrer">
           <img
             src={project.image}
             alt={`${project.title} screenshot`}
             className="w-full object-cover"
+            loading="lazy"
           />
         </a>
       )}
@@ -224,6 +302,7 @@ function ProjectCard({
             className="border-0"
             style={{ width: '100%', height: '500px', overflow: 'hidden' }}
             title={`${project.title} demo`}
+            allowFullScreen
           />
         </div>
       )}

@@ -5,6 +5,7 @@ export interface Project {
   github?: string
   live?: string
   video?: string
+  videoLink?: string
   demo?: string
   image?: string
 }
@@ -18,6 +19,15 @@ export const projects: Project[] = [
     github: 'https://github.com/nxu22/salespilot-multi-agent',
     live: 'https://salespilot-multi-agent.onrender.com/',
     video: '/salespilot.mp4',
+  },
+  {
+    title: 'Riverstone Pet Clinic — Voice AI Booking Agent',
+    description:
+      'River is a real-time inbound voice agent that answers the phone at a veterinary clinic, handles caller questions about services and hours, and books appointments — without a human receptionist. Callers speak naturally; River responds in under a second with a warm, conversational voice and confirms the booking before hanging up.\n\nThe stack has three layers working in concert. Retell handles voice orchestration — streaming audio in and out, managing turn-taking, and calling the FastAPI backend over signature-verified webhooks so no unauthenticated request can trigger a booking. ElevenLabs provides the voice, and Claude Haiku drives the conversation: it reads available time slots from a SQLite database, reasons about the caller\'s preferred time, and either confirms a booking or offers alternatives when the slot is taken.\n\nThe hardest part was keeping latency low enough to feel like a real phone call. The webhook pipeline had to complete — verify signature, query availability, write the booking, return a response — within the window Retell expects before the caller hears dead air. SQLite\'s single-file reads made query time negligible, and keeping the Claude prompt tight (no chain-of-thought, structured output only) kept inference fast.\n\nPost-call automation runs through n8n: once a booking is written, a workflow fires a confirmation email to the client and pushes the appointment into the CRM — no manual follow-up required.',
+    tags: ['Retell', 'ElevenLabs', 'Claude API', 'Voice AI', 'FastAPI', 'Python', 'SQLite', 'n8n', 'Webhooks'],
+    github: 'https://github.com/nxu22/Riverstone-Pet-Clinic-Voice-AI-Agent',
+    videoLink: 'https://streamable.com/wrv0mb',
+    image: '/riverstone.png',
   },
   {
     title: 'WildWatch — AI Wildlife Camera Analysis Agent',

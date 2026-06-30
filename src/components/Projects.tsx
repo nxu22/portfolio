@@ -107,7 +107,7 @@ function LazyVideo({ src, className }: { src: string; className?: string }) {
     return () => observer.disconnect()
   }, [src])
 
-  return <video ref={ref} loop muted playsInline className={className} />
+  return <video ref={ref} loop muted playsInline preload="none" className={className} />
 }
 
 function VideoModal({ src, onClose }: { src: string; onClose: () => void }) {

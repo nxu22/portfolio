@@ -4,9 +4,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        cream:  '#EDE6D4',
-        blue:   '#012fa7',
-        orange: '#F1903F',
+        cream:  '#ffffff',
+        blue:   '#0a0a0a',
+        orange: '#0a0a0a',
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],

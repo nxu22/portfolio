@@ -1,36 +1,29 @@
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 px-6 bg-cream border-t border-blue/15">
-      <div className="max-w-xl mx-auto text-center">
-
-        <p className="font-sans font-light text-blue/60 text-base leading-relaxed mb-10">
-          I'm currently open to new opportunities. Whether you have a project
-          in mind or just want to connect — I'd love to hear from you.
+    <section id="contact" className="px-8 py-16 bg-cream">
+      <div className="max-w-[970px] mx-auto">
+        <h2 className="text-[12.5px] tracking-[0.3em] uppercase text-blue/40 mb-3">
+          Contact
+        </h2>
+        <p className="text-[19px] font-light leading-relaxed text-blue/70 mb-5">
+          Open to AI engineering and infrastructure roles. If you're building
+          agent systems or real-time voice and want someone who measures them,
+          I'd like to hear from you.
         </p>
-
-        <a
-          href="mailto:nanxu1279@gmail.com"
-          className="inline-block px-10 py-3.5 bg-blue text-cream font-sans text-xs tracking-[0.25em] uppercase rounded-full hover:bg-blue/80 transition-colors duration-300 mb-12"
-        >
-          Send a Message
-        </a>
-
-        <div className="flex justify-center gap-8 font-sans text-xs tracking-[0.25em] uppercase text-blue/40">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[16.5px]">
+          <a
+            href="mailto:nanxu1279@gmail.com"
+            className="text-blue hover:opacity-60 transition-opacity"
+          >
+            nanxu1279@gmail.com
+          </a>
           <a
             href="https://github.com/nxu22"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-orange transition-colors duration-200"
+            className="text-blue/50 hover:text-blue transition-colors"
           >
-            GitHub
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-orange transition-colors duration-200"
-          >
-            LinkedIn
+            GitHub ↗
           </a>
         </div>
       </div>

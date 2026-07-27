@@ -5,53 +5,37 @@ export default function Hero() {
   const [open, setOpen] = useState(false)
 
   return (
-    <div
-      className="relative flex items-center gap-3 cursor-default"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      <h1 className={`font-serif text-xl font-bold italic transition-colors duration-200 ${open ? 'text-orange' : 'text-blue'}`}>
-        Hi, I'm Nan.
-      </h1>
-      <img
-        src={photo}
-        alt="Nan"
-        className={`w-10 drop-shadow-md shrink-0 transition-transform duration-200 ${open ? 'scale-105' : ''}`}
-      />
-
-      {/* Contact popup */}
-      <div
-        className={`absolute right-0 top-full mt-2 w-64 bg-cream border border-blue/20 rounded-xl shadow-lg p-4 transition-all duration-200 ${open ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-1'}`}
+    <div className="relative">
+      {/* click, not hover — hover has no equivalent on touch devices */}
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="flex items-center gap-2.5 text-[14px] tracking-[0.15em] uppercase text-blue/40 hover:text-blue transition-colors"
       >
-        <p className="font-sans font-light text-blue/60 text-xs leading-relaxed mb-3">
-          I'm currently open to new opportunities. Whether you have a project
-          in mind or just want to connect — I'd love to hear from you.
-        </p>
-        <a
-          href="mailto:nanxu1279@gmail.com"
-          className="block text-center px-5 py-2 bg-blue text-cream font-sans text-[10px] tracking-[0.25em] uppercase rounded-full hover:bg-blue/80 transition-colors duration-300 mb-3"
-        >
-          Send a Message
-        </a>
-        <div className="flex justify-center gap-6 font-sans text-[10px] tracking-[0.25em] uppercase text-blue/40">
+        Contact {open ? '↑' : '↓'}
+        <img src={photo} alt="" className="w-8 shrink-0" />
+      </button>
+
+      {open && (
+        <div className="absolute right-0 top-full mt-3 w-60 bg-cream border border-blue/15 p-4 z-50">
+          <p className="text-[15px] font-light leading-relaxed text-blue/65 mb-3">
+            Open to AI engineering and infrastructure roles.
+          </p>
+          <a
+            href="mailto:nanxu1279@gmail.com"
+            className="block text-[15px] text-blue hover:opacity-60 transition-opacity mb-3 break-all"
+          >
+            nanxu1279@gmail.com
+          </a>
           <a
             href="https://github.com/nxu22"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-orange transition-colors duration-200"
+            className="text-[14px] tracking-[0.15em] uppercase text-blue/45 hover:text-blue transition-colors"
           >
-            GitHub
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-orange transition-colors duration-200"
-          >
-            LinkedIn
+            GitHub ↗
           </a>
         </div>
-      </div>
+      )}
     </div>
   )
 }

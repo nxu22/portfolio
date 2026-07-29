@@ -85,6 +85,7 @@ function ProjectEntry({ project }: { project: Project }) {
       {project.stage && (
         <p className="text-[12.5px] tracking-[0.25em] uppercase text-blue/35 mb-1.5">
           {project.stage}
+          {project.status && ` · ${project.status}`}
         </p>
       )}
 
@@ -113,7 +114,7 @@ function ProjectEntry({ project }: { project: Project }) {
         )}
         {project.videoLink && (
           <button onClick={() => setVideoOpen(true)} className="hover:text-blue transition-colors">
-            Demo ▸
+            {project.videoLabel ?? 'Demo'} ▸
           </button>
         )}
       </div>

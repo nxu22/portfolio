@@ -73,12 +73,11 @@ export default function App() {
         <section className="px-8 pt-12 pb-24 bg-cream">
           <div className="max-w-2xl mx-auto text-center">
             <p className="text-[25px] font-medium leading-[1.55] text-blue">
-              I build LLM systems that run in production — multi-agent orchestration
-              and real-time voice — and instrument them until I know exactly where the
-              latency, tokens, and dollars go.
+              I build multi-agent and real-time voice systems, and instrument them
+              so latency, tokens, and cost per run are measured rather than assumed.
             </p>
             <p className="mt-3 text-[16.5px] font-light leading-relaxed text-blue/45">
-              Currently going deeper on inference infrastructure: provider gateways,
+              Working on inference infrastructure now: provider gateways,
               streaming latency, failover.
             </p>
             <div className="mt-8">
